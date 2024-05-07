@@ -1,0 +1,381 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: black;
+  color: #39ff14;
+  font-family: Avenir, Arial, Helvetica, sans-serif;
+}
+
+.none {
+  display: none;
+}
+
+.green {
+  color: #39ff14;
+}
+
+.red {
+  color: #C63300;
+}
+
+.full-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.big-clock-container {
+  width: 95.75%;
+  height: 90.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#big-clock {
+  font-size: 35vmin;
+  font-weight: 100;
+  margin: 0;
+  position: relative;
+  top: 4vmin;
+}
+
+#big-weather-div {
+  font-size: 4vmin;
+  margin: 0;
+  position: relative;
+  bottom: 4vmin;
+  display: flex;
+}
+
+.div-style {
+  border: solid 2px;
+  border-radius: 40px;
+}
+
+.outer-big-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.big-container {
+  width: 47%;
+  height: 70vh;
+  margin: 0.75%;
+}
+
+.pomodoro-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.outer-small-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 47%;
+  height: 18vh;
+  margin: 0.75%
+}
+
+.inner-small-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.inner-smallest-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 47%;
+  height: 100%;
+}
+
+#weather-text {
+  left: 5%;
+  position: relative;
+}
+
+#weather-icon {
+  left: 5%;
+  position: relative;
+}
+
+
+.circle {
+  position: relative;
+  border-radius: 50%;
+  width: 45vmin;
+  height: 45vmin;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#pomodoro-inner-circle {
+  position: absolute;
+  border-radius: 50%;
+  width: 45vmin;
+  height: 45vmin;
+  background-color: #176608;
+  z-index: -100;
+  border: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.task-container {
+  margin: 7%;
+  padding: 0;
+  overflow: auto;
+  height: 86%;
+}
+
+.task {
+  font-size: 25px;
+  margin-top: 0;
+}
+
+.habit-ui-container {
+  font-size: 25px;
+  width:auto;
+  height: 77%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  margin-top: 12%
+}
+
+.habit-ui-div-style {
+  border: solid 2px;
+  border-radius: 10px;
+}
+
+.habit-ui-color-div {
+  border-radius: 10px;
+}
+
+.habit-ui-inner-div{
+  width: auto;
+  height: 15%;
+}
+
+.habit-input-div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.habit-ui-button-container {
+  display: flex;
+  justify-content: space-between
+}
+
+.habit-ui-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 42%;
+  height: 100%;
+}
+
+.habit-rep-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 100%;
+}
+
+.habit-rep-text-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+
+.habit-inner-div { 
+  display: flex;
+  justify-content: space-between;
+  font-size: 25px;
+}
+
+.habit-p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.habit-bar {
+  height: 8px;
+  margin-bottom: 20px;
+}
+
+
+.habit-input {
+  background-color: black;
+  border-radius: 0;
+  text-align: center;
+  font-size: 30px;
+  color:#39ff14;
+  border: none;
+}
+
+.habit-input:focus {
+  outline: none;
+}
+
+.habit-input::placeholder{
+  color:#176608
+}
+
+.habit-input::-webkit-input-placeholder {
+  color: #176608;
+}
+
+.repetition-input {
+  width: 30%;
+  text-align: center;
+}
+
+
+#pom-amount {
+  text-align: center;
+  font-size: 25px;
+  margin: 0;
+}
+
+
+
+#countdown {
+  text-align: center;
+  font-size: 75px;
+  margin: 0;
+}
+
+#should-work {
+  text-align: center;
+  font-size: 18px;
+  margin: 0;
+}
+
+.timer-btn-container {
+  display: flex;
+  width: 100%;
+  margin-top: 4vh;
+  justify-content: center;
+}
+
+.timer-btn {
+  border: solid 2px;
+  border-radius: 10px;
+  height: 48px;
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 4%
+}
+
+.timer-btn-text {
+  text-align: center;
+  font-size: 18px;
+  margin: 0;
+}
+
+.bottom-text {
+  text-align: center;
+  font-size: 25px;
+}
+
+
+.button {
+  cursor: pointer;
+}
+
+#timer-cancel-btn {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .outer-big-container {
+    flex-direction: column;
+  }
+
+  .big-container {
+    width: 95%;
+    height: 35vh;
+    margin: 1.5%;
+  }
+
+  .outer-small-container {
+    width: 95%;
+    height: 10vh;
+    margin: 1.5%
+  }
+
+  #countdown {
+    font-size: 35px;
+  }
+
+  .timer-btn-container {
+    margin-top: 2vh;
+  }
+
+  .task {
+    font-size: 20px;
+  }
+
+  .habit-inner-div {
+    font-size: 20px;
+  }
+
+
+  .bottom-text {
+    font-size: 20px;
+  }
+
+  #pom-amount {
+    font-size: 15px;
+  }
+}
+
+@media screen and (max-height: 600px) {
+  #countdown {
+    font-size: 35px;
+  }
+
+  .task {
+    font-size: 20px;
+  }
+
+  .habit-inner-div {
+    font-size: 20px;
+  }
+
+  .bottom-text {
+    font-size: 20px;
+  }
+
+  #pom-amount {
+    font-size: 15px;
+  }
+}
