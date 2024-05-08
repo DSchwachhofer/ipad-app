@@ -1,4 +1,12 @@
-<p class="bottom-text" id="date-time"></p>
+<?php
+if ($_SESSION['isloggedin']) {
+  ?>
 
-<script src="../scripts/utilities.js"></script>
-<script src="../scripts/clock.js"></script>
+  <p class="bottom-text" id="date-time"></p>
+
+  <script src="../scripts/utilities.js"></script>
+  <script src="../scripts/clock.js"></script>
+
+  <?php
+}
+?>

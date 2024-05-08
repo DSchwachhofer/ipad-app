@@ -9,8 +9,9 @@ if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
 if (!isset($_SESSION['isloggedin'])) {
-  $_SESSION['isloggedin'] = true;
+  $_SESSION['isloggedin'] = false;
 }
+// $_SESSION['isloggedin'] = false;
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +30,9 @@ if (!isset($_SESSION['isloggedin'])) {
   <?php
   $allowed_pages = ['main', 'clock', 'login'];
   $page = $_GET['page'] ?? 'main';
-  if (preg_match('/^[a-z0-9\-]+$/i', $page) && file_exists("mainpages/{$page}.php") && in_array($page, $allowed_pages)) {
+  if (!$_SESSION['isloggedin']) {
+    include 'mainpages/login.php';
+  } elseif (preg_match('/^[a-z0-9\-]+$/i', $page) && file_exists("mainpages/{$page}.php") && in_array($page, $allowed_pages)) {
     include "mainpages/{$page}.php";
   } else {
     include 'mainpages/main.php';
