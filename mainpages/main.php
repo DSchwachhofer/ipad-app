@@ -16,7 +16,9 @@ if ($_SESSION['isloggedin']) {
           <a class="reset-link inner-smallest-container div-style button" href="index.php?page=clock">
             <?php include 'modules/smallclock.php'; ?>
           </a>
-          <div class="inner-smallest-container div-style"></div>
+          <div class="inner-smallest-container div-style">
+            <?php include 'modules/weather.php'; ?>
+          </div>
         </div>
         <!-- right small containers -->
         <div class="outer-small-container">
