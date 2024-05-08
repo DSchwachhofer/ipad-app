@@ -41,7 +41,7 @@ body {
   align-items: center;
 }
 
-#big-clock {
+.big-clock {
   font-size: 35vmin;
   font-weight: 100;
   margin: 0;

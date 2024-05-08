@@ -9,7 +9,9 @@
     <div class="outer-big-container">
       <!-- left small containers -->
       <div class="outer-small-container">
-        <div class="inner-smallest-container div-style"></div>
+        <div class="inner-smallest-container div-style button">
+          <?php include 'modules/smallclock.php'; ?>
+        </div>
         <div class="inner-smallest-container div-style"></div>
       </div>
       <!-- right small containers -->

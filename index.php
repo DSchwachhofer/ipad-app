@@ -5,7 +5,14 @@ error_reporting(E_ALL);
 // turn off error reporting for production code
 // ini_set('display_errors', '0');
 // error_reporting(0);
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+if (!isset($_SESSION['isloggedin'])) {
+  $_SESSION['isloggedin'] = true;
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,9 +27,9 @@ error_reporting(E_ALL);
 
 <body>
   <?php
-  $allowed_pages = ['main', 'login'];
+  $allowed_pages = ['main', 'clock', 'login'];
   $page = $_GET['page'] ?? 'main';
-  if (preg_match('/^[a-z0-9\-]+$/i', $page) && file_exists("{$page}.php") && in_array($page, $allowed_pages)) {
+  if (preg_match('/^[a-z0-9\-]+$/i', $page) && file_exists("mainpages/{$page}.php") && in_array($page, $allowed_pages)) {
     include "mainpages/{$page}.php";
   } else {
     include 'mainpages/main.php';
