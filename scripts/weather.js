@@ -31,7 +31,6 @@ function getWeather() {
           var icon = data.weather[0].icon;
           printWeather(temp, icon);
         } catch (e) {
-          console.log(xhr);
           console.error('Error parsing JSON: ', e);
           printWeather('--', '--');
         }
