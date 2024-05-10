@@ -79,14 +79,49 @@ function db_get_habits($conn)
 function db_create_habit($conn, $input)
 {
   try {
-    error_log("DB: create HABIT, input is " . json_encode($input));
-  $sql = "INSERT INTO habits (habit, color, repetition, duration, starttime) VALUES (?, ?, ?, ?, UTC_TIMESTAMP())";
-  $stmt = $conn->prepare($sql);
-  $stmt->bind_param("ssis", $input['habit'], $input['color'], $input['repetition'], $input['duration']);
-  $stmt->execute();
-  return array('status' => 'success', 'message' => 'Habit created successfully');
+    error_log("DB: create HABIT");
+    $sql = "INSERT INTO habits (habit, color, repetition, duration, starttime) VALUES (?, ?, ?, ?, UTC_TIMESTAMP())";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssis", $input['habit'], $input['color'], $input['repetition'], $input['duration']);
+    $stmt->execute();
+    return array('status' => 'success', 'message' => 'Habit created successfully');
 
   } catch (Exception $e) {
     return array('status' => 'error', 'message' => 'Could not create habit: ' . $e->getMessage());
+  }
+}
+
+function db_edit_habit($conn, $input)
+{
+  try {
+    error_log("DB: edit HABIT");
+    $sql = "UPDATE habits SET habit = ?, color = ?, repetition = ?, duration = ?, starttime = ? WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssissi", $input['habit'], $input['color'], $input['repetition'], $input['duration'], $input['starttime'], $input['id']);
+    if ($stmt->execute()) {
+      return array('status' => 'success', 'message' => 'Habit edited successfully');
+    } else {
+      error_log("DB: execute error: " . $stmt->error);
+      return array('status' => 'error', 'message' => 'Could not edit habit: ' . $stmt->error);
+    }
+  } catch (Exception $e) {
+    return array('status' => 'error', 'message' => 'Could not create habit: ' . $e->getMessage());
+  }
+}
+
+function db_delete_habit($conn, $input)
+{
+  try {
+    error_log("DB: delete HABIT");
+    $sql = "DELETE FROM habits WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $input['id']);
+    if ($stmt->execute()) {
+      return array('status' => 'success', 'message' => 'Habit deleted successfully');
+    } else {
+      return array('status' => 'error', 'message' => 'Could not delete habit: ' . $stmt->error);
+    }
+  } catch (Exception $e) {
+    return array('status' => 'error', 'message' => 'Could not delete habit: ' . $e->getMessage());
   }
 }

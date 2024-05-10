@@ -293,7 +293,7 @@ var habits = {
 
       cancelBtn.addEventListener('click', function () {
         showModal = false;
-        habits.printHabitList();
+        habits.getData();
       });
 
       okBtn.addEventListener('click', function () {
@@ -419,7 +419,9 @@ var habits = {
   // ------------ TALK TO SERVER ------------
 
   completeHabitHandler(habit) {
-    var data = JSON.stringify({id: habit.id, action: 'complete'});
+    console.log('completeHabitHandler', habit);
+    habit.action = 'complete';
+    var data = JSON.stringify(habit     );
     habits.editHabitsServer(data);
   },
 

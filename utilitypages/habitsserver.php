@@ -54,13 +54,14 @@ function edit_habit($conn, $input)
       $feedback = db_create_habit($conn, $input);
       break;
     case 'edit':
-      // edit_habit($conn, $input);
+      $feedback = db_edit_habit($conn, $input);
       break;
     case 'delete':
-      // delete_habit($conn, $input);
+      $feedback = db_delete_habit($conn, $input);
       break;
     case 'complete':
-      // complete_habit($conn, $input);
+      $input['starttime'] = gmdate('Y-m-d H:i:s');
+      $feedback = db_edit_habit($conn, $input);
       break;
     default:
       $feedback = array('status' => 'error', 'message' => 'Unsupported action');
