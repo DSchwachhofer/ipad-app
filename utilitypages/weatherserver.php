@@ -6,10 +6,7 @@ if (session_handler_check_login()) {
   require 'db.php';
   try {
     $cache = get_server_cache($conn, 'weather');
-    if ($cache && time() - strtotime($cache['timestamp']) < 300) {
-      error_log("TIME(): " . time());
-      error_log("STRTOTIME(): " . strtotime($cache['timestamp']));
-      error_log("TIME DIFFERENCE: " . (time() - strtotime($cache['timestamp'])));
+    if ($cache && time() - strtotime($cache['timestamp']) < 280) {
       error_log("WEATHER SERVER: Using cached weather data");
       echo $cache['data'];
       exit();

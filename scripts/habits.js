@@ -8,7 +8,7 @@ var habitGreenColor = '#39ff14';
 var habitRedColor = '#C63300';
 
 var showModal = false;
-var habitData
+var habitData;
 
 var habitDummyData = JSON.stringify([
   {
@@ -113,16 +113,6 @@ function sortListOfHabits(habitList) {
   return sortedList;
 }
 
-function getHighestId() {
-  var highestUsedId = 0;
-  for (var habit of JSON.parse(habitData)) {
-    if (habit.id > highestUsedId) {
-      highestUsedId = habit.id;
-    }
-  }
-  return highestUsedId + 1;
-}
-
 // functions to handle switch button logic
 function switchBtn(options, currentVal) {
   // get index of current value.
@@ -171,7 +161,7 @@ var habits = {
       color: colorBtnColor,
       repetition: 1,
       duration: 'Day',
-      id: getHighestId(),
+      id: -1,
     };
     if (data.type === 'edit') {
       repetitionBtnText = data.habitData.repetition;
@@ -229,49 +219,49 @@ var habits = {
     uiContainer.appendChild(buttonDiv);
 
     // create input to define habit name
-    var habitInput = document.createElement("input");
-    habitInput.setAttribute("class", "habit-input");
-    habitInput.setAttribute("placeholder", "type name");
-    if (data.type === "edit") {
-      habitInput.setAttribute("value", data.habitData.habit);
+    var habitInput = document.createElement('input');
+    habitInput.setAttribute('class', 'habit-input');
+    habitInput.setAttribute('placeholder', 'type name');
+    if (data.type === 'edit') {
+      habitInput.setAttribute('value', data.habitData.habit);
     }
 
     // create duration ui
-    var repetitionButton = document.createElement("div");
+    var repetitionButton = document.createElement('div');
     repetitionButton.setAttribute(
-      "class",
-      "habit-rep-button habit-ui-div-style button"
+      'class',
+      'habit-rep-button habit-ui-div-style button'
     );
     repetitionButton.innerText = repetitionBtnText;
 
-    var repetitionText = document.createElement("div");
-    repetitionText.setAttribute("class", "habit-rep-text-div");
-    repetitionText.innerText = "per";
+    var repetitionText = document.createElement('div');
+    repetitionText.setAttribute('class', 'habit-rep-text-div');
+    repetitionText.innerText = 'per';
 
-    var durationButton = document.createElement("div");
+    var durationButton = document.createElement('div');
     durationButton.setAttribute(
-      "class",
-      "habit-rep-button habit-ui-div-style button"
+      'class',
+      'habit-rep-button habit-ui-div-style button'
     );
     durationButton.innerText = durationBtnText;
 
     // create ok and cancel Buttons
-    var cancelBtn = document.createElement("div");
+    var cancelBtn = document.createElement('div');
     cancelBtn.setAttribute(
-      "class",
-      "habit-ui-button habit-ui-div-style button"
+      'class',
+      'habit-ui-button habit-ui-div-style button'
     );
-    cancelBtn.innerText = "Cancel";
-    var okBtn = document.createElement("div");
-    okBtn.setAttribute("class", "habit-ui-button habit-ui-div-style button");
-    okBtn.innerText = "Ok";
+    cancelBtn.innerText = 'Cancel';
+    var okBtn = document.createElement('div');
+    okBtn.setAttribute('class', 'habit-ui-button habit-ui-div-style button');
+    okBtn.innerText = 'Ok';
 
-    var deleteBtn = document.createElement("div");
+    var deleteBtn = document.createElement('div');
     deleteBtn.setAttribute(
-      "class",
-      "habit-ui-button habit-ui-div-style button"
+      'class',
+      'habit-ui-button habit-ui-div-style button'
     );
-    deleteBtn.innerText = "Delete";
+    deleteBtn.innerText = 'Delete';
 
     habitInputDiv.appendChild(habitInput);
     durationDiv.appendChild(repetitionButton);
@@ -279,60 +269,59 @@ var habits = {
     durationDiv.appendChild(durationButton);
 
     // show ok and delete button for edits
-    if (data.type === "edit") {
+    if (data.type === 'edit') {
       buttonDiv.appendChild(okBtn);
       buttonDiv.appendChild(deleteBtn);
 
-      okBtn.addEventListener("click", function () {
+      okBtn.addEventListener('click', function () {
         newHabit.habit = habitInput.value;
+        newHabit.action = 'edit';
         showModal = false;
-        habits.printHabitList(habitData);
         habits.editHabitsServer(JSON.stringify(newHabit));
       });
 
-      deleteBtn.addEventListener("click", function () {
+      deleteBtn.addEventListener('click', function () {
         // console.log("DELETE HABIT");
+        newHabit.action = 'delete';
         showModal = false;
-        habits.printHabitList(habitData);
-        habits.deleteHabitHandler(data.habitData);
+        habits.editHabitsServer(JSON.stringify(newHabit));
       });
     } else {
       // show ok and cancel button
       buttonDiv.appendChild(okBtn);
       buttonDiv.appendChild(cancelBtn);
 
-      cancelBtn.addEventListener("click", function () {
+      cancelBtn.addEventListener('click', function () {
         showModal = false;
-        habits.printHabitList(habitData);
+        habits.printHabitList();
       });
 
-      okBtn.addEventListener("click", function () {
+      okBtn.addEventListener('click', function () {
         newHabit.habit = habitInput.value;
+        newHabit.action = 'create';
         showModal = false;
-        habits.printHabitList(habitData);
         habits.editHabitsServer(JSON.stringify(newHabit));
       });
     }
 
     // event listeners for buttons:
     repetitionButton.addEventListener(
-      "click",
+      'click',
       repetitionBtnHandler.bind(this, newHabit, repetitionButton)
     );
 
     durationButton.addEventListener(
-      "click",
+      'click',
       durationBtnHandler.bind(this, newHabit, durationButton)
     );
     colorDiv.addEventListener(
-      "click",
+      'click',
       colorBtnHandler.bind(this, newHabit, colorDiv)
     );
   },
 
   printHabitList(habitServerData) {
-    habitData = habitServerData;
-    var habitParsedData = JSON.parse(habitData)
+    var habitParsedData = JSON.parse(habitServerData);
     if (showModal) {
       return;
     }
@@ -424,20 +413,71 @@ var habits = {
 
   editHabitHandler(habit) {
     console.log('editHabitHandler', habit);
-    habits.createEditHabit({ type: "edit", habitData: habit });
+    habits.createEditHabit({ type: 'edit', habitData: habit });
   },
+
+  // ------------ TALK TO SERVER ------------
 
   completeHabitHandler(habit) {
-    console.log('completeHabitHandler', habit);
-  },
-
-  deleteHabitHandler(habit) {
-    console.log('deleteHabitHandler', habit);
+    var data = JSON.stringify({id: habit.id, action: 'complete'});
+    habits.editHabitsServer(data);
   },
 
   editHabitsServer(habit) {
     console.log('editHabitsServer', habit);
+    var xhr = new XMLHttpRequest();
+    try {
+      xhr.open('POST', '../utilitypages/habitsserver.php', true);
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          try {
+            var response = JSON.parse(xhr.responseText);
+            if (response.status === 'success') {
+              console.log(response.message);
+              habits.getData();
+            } else if (response.status === 'error') {
+              console.error(response.message);
+              habits.getData();
+            }
+          } catch (e) {
+            console.error('Error parsing JSON: ', e);
+          }
+        }
+      };
+      try {
+        xhr.send(habit);
+      } catch (e) {
+        console.error('Error sending request: ', e);
+      }
+    } catch (e) {
+      console.error('Request error: ', e);
+    }
+  },
+
+  getData() {
+    var xhr = new XMLHttpRequest();
+    try {
+      xhr.open('GET', '../utilitypages/habitsserver.php', true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          try {
+            var data = xhr.responseText;
+            habits.printHabitList(data);
+          } catch (e) {
+            console.error('Error parsing JSON: ', e);
+          }
+        }
+      };
+      try {
+        xhr.send();
+      } catch (e) {
+        console.error('Error sending request: ', e);
+      }
+    } catch (e) {
+      console.error('Request error: ', e);
+    }
   },
 };
 
-habits.printHabitList(habitDummyData);
+habits.getData();

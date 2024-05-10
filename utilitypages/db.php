@@ -59,3 +59,34 @@ function get_walking_data($conn)
     return null;
   }
 }
+
+function db_get_habits($conn)
+{
+  error_log("DB: GETTING HABITS DATA");
+  $sql = "SELECT * FROM habits";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+    $habits = [];
+    while ($row = $result->fetch_assoc()) {
+      $habits[] = $row;
+    }
+    return $habits;
+  } else {
+    return null;
+  }
+}
+
+function db_create_habit($conn, $input)
+{
+  try {
+    error_log("DB: create HABIT, input is " . json_encode($input));
+  $sql = "INSERT INTO habits (habit, color, repetition, duration, starttime) VALUES (?, ?, ?, ?, UTC_TIMESTAMP())";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("ssis", $input['habit'], $input['color'], $input['repetition'], $input['duration']);
+  $stmt->execute();
+  return array('status' => 'success', 'message' => 'Habit created successfully');
+
+  } catch (Exception $e) {
+    return array('status' => 'error', 'message' => 'Could not create habit: ' . $e->getMessage());
+  }
+}
