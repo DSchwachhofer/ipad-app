@@ -20,15 +20,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   // Verify the password
   if ($user && password_verify($password, $user->password)) {
-    // The password is correct
-    $_SESSION['isloggedin'] = true;
-    session_regenerate_id(true);
+    error_log("LOGIN: User $username logged in");
+    session_handler_login();
     header('Location: index.php');
     exit;
 
   } else {
-    // The password is incorrect
-    $_SESSION['isloggedin'] = false;
+    error_log("LOGIN: User $username failed to log in");
+    session_handler_logout();
     header('Location: index.php?page=login');
   }
 

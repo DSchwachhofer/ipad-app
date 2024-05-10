@@ -8,15 +8,12 @@ function printWeather(temp, icon) {
     weatherEl.innerHTML = 'no server';
     weatherEl.style.left = 0;
     weatherIconEl.classList.add('none');
-    // bigWeatherEl.innerHTML = '-';
   } else {
     weatherIconEl.classList.remove('none');
     weatherEl.style.left = '5%';
     var iconPath = './assets/weather-icons/' + icon + '.png';
     weatherEl.innerHTML = Math.round(temp) + '°C';
     weatherIconEl.src = iconPath;
-    // bigWeatherEl.innerText = temp + '°C';
-    // bigWeatherIconEl.src = iconPath;
   }
 }
 
@@ -36,7 +33,11 @@ function getWeather() {
         }
       }
     };
-    xhr.send();
+    try {
+      xhr.send();
+    } catch (e) {
+      console.error('Error sending request: ', e);
+    }
   } catch (e) {
     console.error('Request error: ', e);
   }

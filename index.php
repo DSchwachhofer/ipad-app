@@ -5,13 +5,7 @@ error_reporting(E_ALL);
 // turn off error reporting for production code
 // ini_set('display_errors', '0');
 // error_reporting(0);
-if (session_status() == PHP_SESSION_NONE) {
-  session_start();
-}
-if (!isset($_SESSION['isloggedin'])) {
-  $_SESSION['isloggedin'] = false;
-}
-// $_SESSION['isloggedin'] = false;
+include './utilitypages/sessionhandler.php';
 ?>
 
 <!DOCTYPE html>
@@ -30,12 +24,25 @@ if (!isset($_SESSION['isloggedin'])) {
   <?php
   $allowed_pages = ['main', 'clock', 'login'];
   $page = $_GET['page'] ?? 'main';
-  if (!$_SESSION['isloggedin']) {
+  if (!session_handler_check_login()) {
     include 'mainpages/login.php';
   } elseif (preg_match('/^[a-z0-9\-]+$/i', $page) && file_exists("mainpages/{$page}.php") && in_array($page, $allowed_pages)) {
     include "mainpages/{$page}.php";
   } else {
     include 'mainpages/main.php';
+  }
+  ?>
+
+  <?php if (session_handler_check_login()) {
+    if ($page === 'main') {
+      echo '<script src="scripts/utilities.js"></script>';
+      echo '<script src="../scripts/timer.js"></script>';
+      echo '<script src="scripts/weather.js"></script>';
+    } elseif ($page === 'clock') {
+      echo '<script src="scripts/utilities.js"></script>';
+      echo '<script src="../scripts/clock.js"></script>';
+      echo '<script src="scripts/weather.js"></script>';
+    }
   }
   ?>
 </body>

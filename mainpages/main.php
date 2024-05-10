@@ -1,5 +1,5 @@
 <?php
-if ($_SESSION['isloggedin']) {
+if (session_handler_check_login()) {
   ?>
 
   <div id="main_page">
@@ -22,7 +22,9 @@ if ($_SESSION['isloggedin']) {
         </div>
         <!-- right small containers -->
         <div class="outer-small-container">
-          <div class="inner-smallest-container div-style"></div>
+          <div class="inner-smallest-container div-style">
+            <?php include 'modules/solar.php'; ?>
+          </div>
           <div class="inner-smallest-container div-style"></div>
         </div>
       </div>

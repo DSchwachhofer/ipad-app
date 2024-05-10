@@ -1,5 +1,5 @@
 <?php
-if ($_SESSION['isloggedin']) {
+if (session_handler_check_login()) {
   ?>
 
   <div class="big-container pomodoro-container div-style">
@@ -18,9 +18,6 @@ if ($_SESSION['isloggedin']) {
       </div>
     </div>
   </div>
-
-  <script src="../scripts/utilities.js"></script>
-  <script src="../scripts/timer.js"></script>
 
   <?php
 }

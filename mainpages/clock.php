@@ -1,5 +1,5 @@
 <?php
-if ($_SESSION['isloggedin']) {
+if (session_handler_check_login()) {
   ?>
 
   <div class="full-page">
@@ -11,11 +11,6 @@ if ($_SESSION['isloggedin']) {
         </div>
     </a>
   </div>
-
-  <script src="../scripts/utilities.js"></script>
-  <script src="../scripts/clock.js"></script>
-  <script src="../scripts/weather.js"></script>
-
   <?php
 }
 ?>

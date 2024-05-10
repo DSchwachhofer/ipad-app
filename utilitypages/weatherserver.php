@@ -1,11 +1,12 @@
 <?php
-session_start();
+require 'sessionhandler.php';
 
-if ($_SESSION['isloggedin']) {
+if (session_handler_check_login()) {
 
-  if (isset($_SESSION['weather_cache']) && $_SESSION['weather_cache']['timestamp'] > time() - 300) {
+  if (session_handler_should_load_weather()) {
     error_log("WEATHER SERVER: Sending cached weather data");
-    echo $_SESSION['weather_cache']['data'];
+    $data = session_handler_get_weather_data();
+    echo $data;
   } else {
 
     // COMMENT OUT THE FOLLOWING LINES IN PRODUCTION CODE
@@ -27,11 +28,7 @@ if ($_SESSION['isloggedin']) {
     } else {
       $decoded = json_decode($response, TRUE);
       error_log("WEATHER SERVER: Making request to weather API - Status: " . $decoded['cod']);
-      $_SESSION['weather_cache'] = [
-        'timestamp' => time(),
-        'data' => $response
-      ];
-
+      session_handler_set_weather_cache($response);
       echo $response;
     }
   }

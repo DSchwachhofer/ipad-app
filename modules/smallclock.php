@@ -1,5 +1,5 @@
 <?php
-if ($_SESSION['isloggedin']) {
+if (session_handler_check_login()) {
   ?>
 
   <p class="bottom-text" id="date-time"></p>
