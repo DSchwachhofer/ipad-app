@@ -18,7 +18,8 @@ if (session_handler_check_login()) {
       </div>
     </div>
   </div>
-
+  <script src="scripts/utilities.js"></script>
+  <script src="scripts/timer.js"></script>
   <?php
 }
 ?>

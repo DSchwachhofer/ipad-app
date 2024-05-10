@@ -33,18 +33,14 @@ include './utilitypages/sessionhandler.php';
   }
   ?>
 
-  <?php if (session_handler_check_login()) {
+  <!-- <?php if (session_handler_check_login()) {
     if ($page === 'main') {
-      echo '<script src="scripts/utilities.js"></script>';
-      echo '<script src="../scripts/timer.js"></script>';
-      echo '<script src="scripts/weather.js"></script>';
-    } elseif ($page === 'clock') {
-      echo '<script src="scripts/utilities.js"></script>';
-      echo '<script src="../scripts/clock.js"></script>';
-      echo '<script src="scripts/weather.js"></script>';
+
+      echo '<script src="scripts/solar.js"></script>';
+      // echo '<script src="scripts/weather.js"></script>';
     }
   }
-  ?>
+  ?> -->
 </body>
 
 </html>

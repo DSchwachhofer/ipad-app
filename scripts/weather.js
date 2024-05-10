@@ -1,8 +1,6 @@
 var weatherEl = document.getElementById('weather-text');
 var weatherIconEl = document.getElementById('weather-icon');
 
-var xhr = new XMLHttpRequest();
-
 function printWeather(temp, icon) {
   if (temp === '--') {
     weatherEl.innerHTML = 'no server';
@@ -18,6 +16,7 @@ function printWeather(temp, icon) {
 }
 
 function getWeather() {
+  var xhr = new XMLHttpRequest();
   try {
     xhr.open('GET', '../utilitypages/weatherserver.php', true);
     xhr.onreadystatechange = function () {

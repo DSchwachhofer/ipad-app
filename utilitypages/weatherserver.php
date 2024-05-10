@@ -6,6 +6,7 @@ if (session_handler_check_login()) {
   if (session_handler_should_load_weather()) {
     error_log("WEATHER SERVER: Sending cached weather data");
     $data = session_handler_get_weather_data();
+    // error_log($data);
     echo $data;
   } else {
 

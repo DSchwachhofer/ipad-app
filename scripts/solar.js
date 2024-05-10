@@ -1,7 +1,5 @@
 var powerTextEl = document.getElementById('power-text');
 
-var xhr = new XMLHttpRequest();
-
 function printPower(power) {
   powerTextEl.classList.add('green');
   powerTextEl.classList.remove('red');
@@ -17,7 +15,8 @@ function printPower(power) {
 }
 
 function getPower() {
-  try{
+  var xhr = new XMLHttpRequest();
+  try {
     xhr.open('GET', '../utilitypages/solarserver.php', true);
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4 && xhr.status == 200) {
@@ -38,5 +37,4 @@ function getPower() {
 
   setTimeout(getPower, 5 * 60 * 1000);
 }
-
-// getPower();
+getPower();
