@@ -1,0 +1,93 @@
+[
+    {
+        "habit": "Z\u00e4hneputzen",
+        "color": "#FF00FF",
+        "repetition": 1,
+        "duration": "Day",
+        "id": 1,
+        "starttime": 1708503120.496682
+    },
+    {
+        "habit": "Rasieren",
+        "color": "#FFFF00",
+        "repetition": 2,
+        "duration": "Week",
+        "id": 2,
+        "starttime": 1708342660.136045
+    },
+    {
+        "habit": "Auto waschen",
+        "color": "#800080",
+        "repetition": 6,
+        "duration": " Year",
+        "id": 4,
+        "starttime": 1692238812.998351,
+        "percentage": 0
+    },
+    {
+        "habit": "Yoga",
+        "color": "#FFFF00",
+        "repetition": 1,
+        "duration": "Week",
+        "id": 5,
+        "starttime": 1703074224.586073
+    },
+    {
+        "habit": "Sport",
+        "color": "#00FFFF",
+        "repetition": 3,
+        "duration": "Week",
+        "id": 6,
+        "starttime": 1708342655.625445
+    },
+    {
+        "habit": "Backup",
+        "color": "#FF00FF",
+        "repetition": 6,
+        "duration": " Year",
+        "id": 7,
+        "starttime": 1692239551.477464,
+        "percentage": 0
+    },
+    {
+        "habit": "Alexandertechnik",
+        "color": "#FFFF00",
+        "repetition": 2,
+        "duration": "Week",
+        "id": 8,
+        "starttime": 1707906749.683358
+    },
+    {
+        "habit": "Update Everything",
+        "color": "#FF00FF",
+        "repetition": 2,
+        "duration": "Month",
+        "id": 9,
+        "starttime": 1708359414.327056,
+        "percentage": 1.5385119047619047
+    },
+    {
+        "habit": "Zehenn\u00e4gel schneiden",
+        "color": "#0000FF",
+        "repetition": 2,
+        "duration": "Month",
+        "id": 10,
+        "starttime": 1707630404.743025
+    },
+    {
+        "habit": "Pflanze gie\u00dfen",
+        "color": "#0000FF",
+        "repetition": 3,
+        "duration": "Month",
+        "id": 11,
+        "starttime": 1708342688.386422
+    },
+    {
+        "habit": "Dusche reinigen",
+        "color": "#0000FF",
+        "repetition": 2,
+        "duration": "Month",
+        "id": 12,
+        "starttime": 1708006811.702897
+    }
+]

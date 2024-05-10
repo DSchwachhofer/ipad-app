@@ -39,7 +39,7 @@ function get_server_cache($conn, $name)
 function set_server_cache($conn, $name, $data)
 {
   error_log("DB: SETTING SERVER CACHE: $name");
-  $sql = "INSERT INTO server_cache (name, data, timestamp) VALUES (?, ?, NOW()) ON DUPLICATE KEY UPDATE data = VALUES(data), timestamp = NOW()";
+  $sql = "INSERT INTO server_cache (name, data, timestamp) VALUES (?, ?, UTC_TIMESTAMP()) ON DUPLICATE KEY UPDATE data = VALUES(data), timestamp = UTC_TIMESTAMP()";
 
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("ss", $name, $data);

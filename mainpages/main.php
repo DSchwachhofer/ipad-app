@@ -8,7 +8,9 @@ if (session_handler_check_login()) {
       <div class="outer-big-container">
         <?php include 'modules/pomodoro.php'; ?>
         <!-- right big container -->
-        <div class="big-container div-style"></div>
+        <div class="big-container div-style">
+          <?php include 'modules/habits.php'; ?>
+        </div>
       </div>
       <div class="outer-big-container">
         <!-- left small containers -->
