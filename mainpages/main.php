@@ -25,7 +25,9 @@ if (session_handler_check_login()) {
           <div class="inner-smallest-container div-style">
             <?php include 'modules/solar.php'; ?>
           </div>
-          <div class="inner-smallest-container div-style"></div>
+          <div class="inner-smallest-container div-style">
+            <?php include 'modules/walking.php'; ?>
+          </div>
         </div>
       </div>
     </div>
