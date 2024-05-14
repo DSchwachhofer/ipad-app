@@ -16,6 +16,8 @@ function session_handler_login()
 function session_handler_logout()
 {
   $_SESSION['isloggedin'] = false;
+  session_unset();
+  session_destroy();
 }
 
 function session_handler_check_login()

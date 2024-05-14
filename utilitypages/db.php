@@ -20,16 +20,15 @@ if ($conn->connect_error) {
 function get_server_cache($conn, $name)
 {
   error_log("DB: GETTING SERVER CACHE: $name");
-  $sql = "SELECT * FROM server_cache WHERE name = ?";
+  $sql = "SELECT name, data, timestamp FROM server_cache WHERE name = ?";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("s", $name);
   $stmt->execute();
 
-  $result = $stmt->get_result();
+  $stmt->bind_result($name, $data, $timestamp);
 
-  if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    return $row;
+  if ($stmt->fetch()) {
+    return ['name' => $name, 'data' => $data, 'timestamp' => $timestamp];
   } else {
     error_log("NULL CACHE: $name");
     return null;

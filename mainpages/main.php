@@ -15,7 +15,8 @@ if (session_handler_check_login()) {
       <div class="outer-big-container">
         <!-- left small containers -->
         <div class="outer-small-container">
-          <a class="reset-link inner-smallest-container div-style button" href="index.php?page=clock">
+          <a class="reset-link inner-smallest-container div-style button" href="index.php?page=clock"
+            onclick="event.preventDefault(); window.location.href=this.href;">
             <?php include 'modules/smallclock.php'; ?>
           </a>
           <div class="inner-smallest-container div-style">
@@ -33,7 +34,14 @@ if (session_handler_check_login()) {
         </div>
       </div>
     </div>
+    <div class="outer-big-container">
+      <a class="reset-link footer div-style button" href="utilitypages/logout.php"
+        onclick="event.preventDefault(); window.location.href=this.href;">
+        <p class="bottom-text">log out</p>
+      </a>
+    </div>
+  </div>
 
-    <?php
+  <?php
 }
 ?>

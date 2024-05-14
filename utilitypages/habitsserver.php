@@ -88,7 +88,7 @@ function get_habit_duration($habit)
 {
   $day_in_seconds = 60 * 60 * 24;
   $duration_of_one_repetition = 0;
-  switch ($habit['repetition']) {
+  switch ($habit['duration']) {
     case 'Day':
       $duration_of_one_repetition = $day_in_seconds;
       break;

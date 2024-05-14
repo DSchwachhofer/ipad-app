@@ -32,15 +32,6 @@ include './utilitypages/sessionhandler.php';
     include 'mainpages/main.php';
   }
   ?>
-
-  <!-- <?php if (session_handler_check_login()) {
-    if ($page === 'main') {
-
-      echo '<script src="scripts/solar.js"></script>';
-      // echo '<script src="scripts/weather.js"></script>';
-    }
-  }
-  ?> -->
 </body>
 
 </html>

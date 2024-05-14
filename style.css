@@ -37,6 +37,16 @@ body {
   height: 100vh;
 }
 
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95.75%;
+  height: 18vh;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
 .big-clock-container {
   width: 95.75%;
   height: 90.5%;
