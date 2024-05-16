@@ -22,7 +22,7 @@ include './utilitypages/sessionhandler.php';
 
 <body>
   <?php
-  $allowed_pages = ['main', 'clock', 'login'];
+  $allowed_pages = ['main', 'clock', 'login', 'pictures'];
   $page = $_GET['page'] ?? 'main';
   if (!session_handler_check_login()) {
     include 'mainpages/login.php';

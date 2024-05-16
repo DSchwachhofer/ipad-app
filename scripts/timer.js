@@ -11,6 +11,7 @@ var innerCicleEl = document.getElementById("pomodoro-inner-circle");
 
 // CONSTANTS:
 var WORKTIME = 25 * 60;
+// var WORKTIME = 5;
 var SHORT_BREAK = 5 * 60;
 var LONG_BREAK = 15 * 60;
 var breaksCounter = 0;
@@ -76,11 +77,12 @@ function runTimer() {
     timerIsRunning = false;
     currentTimerIsWork = !currentTimerIsWork;
     if (currentTimerIsWork) {
-      sendMessage();
+      sendMessage("Stop Work");
       timerCountDown = WORKTIME;
       shouldWorkEl.innerText = "start work";
     } else {
       breaksCounter += 1;
+      sendMessage("Start Work");
       displayPomAmount();
       shouldWorkEl.innerText = "start break";
       if (breaksCounter % 4 === 0) {
@@ -131,15 +133,21 @@ function cancelTimer() {
   displayTimeLeft();
 }
 
-function sendMessage() {
-  // xhr.onreadystatechange = function () {
-  //   if (xhr.readyState === 4 && xhr.status === 200) {
-  //     console.log("SENDING WHAT'S APP MESSAGE");
-  //   }
-  // };
-  // xhr.open("GET", "http://" + ip_address + ":7000/sendmessage");
-  // xhr.send();
-  console.log("SENDING WHAT'S APP MESSAGE");
+function sendMessage(message) {
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", 'https://api.pushover.net/1/messages.json', true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      console.log(xhr.responseText);
+    }
+  }
+  
+  var data = 'token=' + encodeURIComponent(pushToken) + '&user=' + encodeURIComponent(pushUser) + '&message=' + encodeURIComponent(message);
+  
+  xhr.send(data);
+  console.log("SENDING PUSH NOTIFICATION");
 }
 
 function startStopHandler() {

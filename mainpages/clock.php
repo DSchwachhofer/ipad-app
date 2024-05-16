@@ -19,16 +19,16 @@ if (session_handler_check_login()) {
       <script src="scripts/utilities.js"></script>
       <script src="scripts/clock.js"></script>
       <script src="scripts/weather.js"></script>
-    <?php } else { ?>
-      <a href="index.php" class="reset-link big-clock-container button"
+      <?php } else { ?>
+      <a href="index.php" class="reset-link big-<?php echo $image_page === "family" ? "image" : "clock" ?>-container button"
         onclick="event.preventDefault(); window.location.href=this.href;">
-        <div class="image-container div-style">
+        <div class="image-container <?php echo $image_page === "other" ? "div-style" : "" ?>">
           <?php if ($clock_page === 'small') { ?>
             <div class="picture-clock-container">
-              <p class="picture-clock" id="date-time"></p>
-              <div id="big-weather-div">
-                <p id="weather-text"></p>
-                <img id="weather-icon">
+                <p class="picture-clock" id="date-time"></p>
+                <div id="big-weather-div">
+                  <p id="weather-text"></p>
+                  <img id="weather-icon">
               </div>
             </div>
             <script src="scripts/utilities.js"></script>
