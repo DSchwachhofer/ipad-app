@@ -15,7 +15,7 @@ if (session_handler_check_login()) {
       <div class="outer-big-container">
         <!-- left small containers -->
         <div class="outer-small-container">
-          <a class="reset-link inner-smallest-container div-style button" href="index.php?page=clock"
+          <a class="reset-link inner-smallest-container div-style button" href="index.php?page=pictures"
             onclick="event.preventDefault(); window.location.href=this.href;">
             <?php include 'modules/smallclock.php'; ?>
           </a>
